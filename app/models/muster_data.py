@@ -5,6 +5,7 @@ class muster(db.Model):
     __tablename__ = 'muster'
     farmer_id = db.Column(db.Integer(), db.ForeignKey('farmers.farmer_id'))
     milk_union = db.Column(db.String())
+    dairy_id = db.Column(db.Integer(), db.ForeignKey('dairy_owner.dairy_id'))
     muster_id = db.Column(db.Integer())
     payment_period_start = db.Column(db.Date)
     payemnt_period_end = db.Column(db.Date)

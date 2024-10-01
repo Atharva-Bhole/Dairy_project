@@ -1,6 +1,7 @@
 from . import db
 from flask import current_app as app
-
+from models.farmer import farmers
+from models.muster_data import muster
 
 class dairy_owner(db.Model):
     __tablename__ = 'dairy_owner'
@@ -14,5 +15,8 @@ class dairy_owner(db.Model):
     updated_at = db.Column(db.Date)
     deleted_at = db.Column(db.Date)
 
+    farmers = db.relationship(farmers, backref='dairy_owner', lazy=True)
+    muster = db.relationship(muster, backref='dairy_owner', lazy=True)
+    
     def __repr__(self):
         return f"Dairy Name {self.dairy_name}, Dairy Id {self.dairy_id}"
