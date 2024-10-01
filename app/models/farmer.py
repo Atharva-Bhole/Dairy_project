@@ -7,7 +7,7 @@ from .farmer_bank import farmer_bank_details
 class farmers(db.Model):
     __tablename__ = 'farmers'
     farmer_id = db.Column(db.Integer, primary_key=True)
-    dairy_id = db.Column(db.Integer, db.ForeignKey('dairyowner.dairy_id'))
+    dairy_id = db.Column(db.Integer, db.ForeignKey('dairy_owner.dairy_id'))
     state = db.Column(db.String())
     name = db.Column(db.String())
     contact_number = db.Column(db.String(length=15))
@@ -21,7 +21,7 @@ class farmers(db.Model):
     deleted_at = db.Column(db.Date)
     
     cow = db.relationship(cows, backref='farmers', lazy=True)
-    muster = db.relationship(muster, backref='farmers', lazy=True)
+    muster = db.relationship(muster, backref='farmers', lazy=True, foreign_keys=[muster.farmer_id])
     farmer_bank = db.relationship(farmer_bank_details, backref='farmers', lazy=True)
 
     def __repr__(self):
