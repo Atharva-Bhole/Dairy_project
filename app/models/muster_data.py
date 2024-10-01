@@ -6,7 +6,7 @@ class muster(db.Model):
     farmer_id = db.Column(db.Integer(), db.ForeignKey('farmers.farmer_id'))
     milk_union = db.Column(db.String())
     dairy_id = db.Column(db.Integer(), db.ForeignKey('dairy_owner.dairy_id'))
-    muster_id = db.Column(db.Integer())
+    muster_id = db.Column(db.Integer(), primary_key= True)
     payment_period_start = db.Column(db.Date)
     payemnt_period_end = db.Column(db.Date)
     district = db.Column(db.String())
@@ -22,6 +22,14 @@ class muster(db.Model):
     final_amount_after_deduction = db.Column(db.Numeric(10,2))
     avg_rate_per_litre = db.Column(db.Numeric(10,2))
 
+    farmer = db.relationship(
+        'farmers', 
+        foreign_keys=[farmer_id],  # Use the farmer_id foreign key
+        backref='muster', 
+        lazy=True
+    )
+    # farmer = db.relationship('farmers', backref='muster', lazy=True)
+    # dairyowner = db.relationship('dairy_owner', backref='muster', lazy=True)
     def __repr__(self):
         return f"Muster ID {self.muster_id}"
     

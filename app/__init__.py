@@ -9,6 +9,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['TRACK_MODIFICATIONS'] = os.getenv('TRACK_MODIFICATIONS')
     db.init_app(app)
     from app.controllers.main import main
     app.register_blueprint(main)
