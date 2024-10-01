@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, make_response
+from flask import Blueprint, jsonify, make_response, request
+from app.models import db
 from app.models.farmer import farmers
 
 farmer_bp = Blueprint("farmers", __name__)
@@ -15,3 +16,11 @@ def get_farmers():
     except Exception as e:
         print(e)
         return make_response(jsonify({"message": "error getting farmers"}), 500)
+    
+@farmer_bp.route('/farmers', methods=['POST'])
+def create_farmer():
+    data = request.get_json()
+    new_farmer = farmers(**data)
+    db.session.add(new_farmer)
+    db.session.commit()
+    return (jsonify([new_farmer.as_dict()]),201,"User Inserted Successfully")
