@@ -4,7 +4,7 @@ from app.models.dairyowner import dairy_owner
 
 dairy = Blueprint('dairy', __name__)
 
-@dairy.route('/dairy_owner', methods=['POST'])
+@dairy.route('/create_dairy_owner', methods=['POST'])
 def dairy_create():
     data = request.get_json()
     new_dairy = dairy_owner(**data)
@@ -12,7 +12,7 @@ def dairy_create():
     db.session.commit()
     return "Dairy Owner Created Successfully"
 
-@dairy.route('/viewdairydata', methods=['GET'])
+@dairy.route('/view_dairy_data', methods=['GET'])
 def view_dairy_data():
     dairy_list = dairy_owner.query.all()
     dairy_data = [dairy.as_dict() for dairy in dairy_list]

@@ -16,7 +16,9 @@ class dairy_owner(db.Model):
     deleted_at = db.Column(db.Date)
 
     farmers = db.relationship('farmers', backref='dairy_owner', lazy=True)
-    muster = db.relationship('muster', backref='dairy_owner', lazy=True)
+    # Commented out because unsure to add dairy_id in muster data or not 
+    # Also dairy_id is commented out from muster_data model
+    # muster = db.relationship('muster', backref='dairy_owner', lazy=True)
 
     def as_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}

@@ -5,7 +5,8 @@ class muster(db.Model):
     __tablename__ = 'muster'
     farmer_id = db.Column(db.Integer(), db.ForeignKey('farmers.farmer_id'))
     milk_union = db.Column(db.String())
-    dairy_id = db.Column(db.Integer(), db.ForeignKey('dairy_owner.dairy_id'))
+    # Commented out because unsure to add dairy_id in muster data or not more details in muster_controller
+    # dairy_id = db.Column(db.Integer(), db.ForeignKey('dairy_owner.dairy_id'))
     muster_id = db.Column(db.Integer(), primary_key=True)
     payment_period_start = db.Column(db.Date)
     payment_period_end = db.Column(db.Date)
@@ -21,7 +22,8 @@ class muster(db.Model):
     deduction_amount = db.Column(db.Numeric(10,2))
     final_amount_after_deduction = db.Column(db.Numeric(10,2))
     avg_rate_per_litre = db.Column(db.Numeric(10,2))
-
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     def __repr__(self):
         return f"Muster ID {self.muster_id}"
     
