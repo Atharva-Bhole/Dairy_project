@@ -15,8 +15,10 @@ class dairy_owner(db.Model):
     updated_at = db.Column(db.Date)
     deleted_at = db.Column(db.Date)
 
-    farmers = db.relationship(farmers, backref='dairy_owner', lazy=True)
-    muster = db.relationship(muster, backref='dairy_owner', lazy=True)
+    farmers = db.relationship('farmers', backref='dairy_owner', lazy=True)
+    muster = db.relationship('muster', backref='dairy_owner', lazy=True)
 
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     def __repr__(self):
         return f"Dairy Name {self.dairy_name}, Dairy Id {self.dairy_id}"

@@ -24,16 +24,17 @@ class farmers(db.Model):
     deleted_at = db.Column(db.Date)
 
     cow = db.relationship('cows', backref='farmers', lazy=True)
-    # muster = db.relationship('muster', backref='farmers', lazy=True)
+    muster = db.relationship(muster, backref='farmers', lazy=True)
     farmer_bank = db.relationship('farmer_bank_details', backref='farmers', lazy=True)
 
     def as_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     
     
-    cow = db.relationship(cows, backref='farmers', lazy=True)
-    muster = db.relationship(muster, backref='farmers', lazy=True, foreign_keys=[muster.farmer_id])
-    farmer_bank = db.relationship(farmer_bank_details, backref='farmers', lazy=True)
+    cow = db.relationship('cows', backref='farmers', lazy=True)
+    muster = db.relationship('muster', backref='farmers', lazy=True)
+    
+    farmer_bank = db.relationship('farmer_bank_details', backref='farmers', lazy=True)
 
     def __repr__(self):
         return f"Farmer Name {self.name}, FarmerID {self.farmer_id}"

@@ -13,4 +13,3 @@ class cows(db.Model):
     hygiene_rating = db.Column(db.Numeric())
     milking_performace = db.Column(db.Numeric())
     
-    farmer = db.relationship('farmers', backref='cows', lazy=True)

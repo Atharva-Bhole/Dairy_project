@@ -12,7 +12,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.config['TRACK_MODIFICATIONS'] = os.getenv('TRACK_MODIFICATIONS')
     db.init_app(app)
-    from app.controllers.main import main
-    app.register_blueprint(main)
+    from app.controllers.dairy_owner_controller import dairy
+    app.register_blueprint(dairy)
     app.register_blueprint(farmer_bp)
     return app
