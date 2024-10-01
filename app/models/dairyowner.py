@@ -1,7 +1,7 @@
 from . import db
 from flask import current_app as app
-from models.farmer import farmers
-from models.muster_data import muster
+from .farmer import farmers
+from .muster_data import muster
 
 class dairy_owner(db.Model):
     __tablename__ = 'dairy_owner'

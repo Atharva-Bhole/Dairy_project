@@ -1,8 +1,9 @@
 from . import db
 from flask import current_app as app 
-from models.muster_data import muster
-from models.cow import cows
-from models.farmer_bank import farmer_bank_details
+from .muster_data import muster
+from .cow import cows
+from .farmer_bank import farmer_bank_details
+
 class farmers(db.Model):
     __tablename__ = 'farmers'
     farmer_id = db.Column(db.Integer, primary_key=True)
