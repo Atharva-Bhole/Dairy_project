@@ -8,4 +8,8 @@ class cows(db.Model):
     gender = db.Column(db.String())
     farmer_id = db.Column(db.Integer(), foreign_key = 'farmers.farmer_id')
     is_milking = db.Column(db.Boolean())
+    percent_fat = db.Column(db.Numeric(10,2))
+    percent_snf = db.Column(db.Numeric(10,2))
+    hygiene_rating = db.Column(db.Numeric())
+    milking_performace = db.Column(db.Numeric())
     
