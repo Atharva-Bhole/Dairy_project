@@ -10,3 +10,6 @@ class Transaction(db.Model):
     quantity = db.Column(db.Numeric(10, 2), nullable=False)
     price_per_unit = db.Column(db.Numeric(10, 2), nullable=False)
     total_amount = db.Column(db.Numeric(12, 2), nullable=False)
+
+    def __repr__(self):
+        return f"Transaction ID {self.transaction_id}"
