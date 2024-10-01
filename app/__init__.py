@@ -1,5 +1,6 @@
 from flask import Flask
 from app.models import db
+from app.controllers import farmer_bp
 from dotenv import load_dotenv
 import os
 
@@ -13,4 +14,5 @@ def create_app():
     db.init_app(app)
     from app.controllers.main import main
     app.register_blueprint(main)
+    app.register_blueprint(farmer_bp)
     return app
