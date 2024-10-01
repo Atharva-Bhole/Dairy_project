@@ -11,7 +11,7 @@ def test():
 def get_farmers():
     try:
         farmers_ = farmers.query.all()
-        return make_response(jsonify({"farmers": farmers_}), 200)
+        return make_response(jsonify({"farmers": [f.as_dict() for f in farmers_]}), 200)
     except Exception as e:
         print(e)
         return make_response(jsonify({"message": "error getting farmers"}), 500)
