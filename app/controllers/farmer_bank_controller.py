@@ -17,3 +17,19 @@ def addbank():
     db.session.add(new_data)
     db.session.commit()
     return jsonify([new_data.as_dict()]), 201
+
+@bank.route('/get_all_farmer_bank', methods=['GET'])
+def get_all_farmer_bank():
+    bank = farmer_bank_details.query.all()
+    bank_details = [dets.as_dict() for dets in bank]
+    return make_response(jsonify({"Farmer Bank Details" : bank_details}), 200)
+
+
+@bank.route("/delete_farmer_bank", methods=['DELETE'])
+def delete_farmer_bank():
+    data = request.get_json()
+    account_no = data['account_no']
+    bank_details = db.session.query(farmer_bank_details).filter_by(account_no=account_no).first()
+    db.session.delete(bank_details)
+    db.session.commit()
+    return make_response(jsonify({"message" : "Farmer Bank Details Deleted Successfully"}), 200)

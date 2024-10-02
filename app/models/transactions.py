@@ -11,5 +11,8 @@ class Transaction(db.Model):
     price_per_unit = db.Column(db.Numeric(10, 2), nullable=False)
     total_amount = db.Column(db.Numeric(12, 2), nullable=False)
 
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    
     def __repr__(self):
         return f"Transaction ID {self.transaction_id}"

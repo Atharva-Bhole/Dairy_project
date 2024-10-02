@@ -30,6 +30,7 @@ class farmers(db.Model):
     cow = db.relationship('cows', backref='farmers', lazy=True)
     muster = db.relationship('muster', backref='farmers', lazy=True)
     farmer_bank = db.relationship('farmer_bank_details', backref='farmers', lazy=True)
-
+    supply_transactions = db.relationship('supply_transactions', backref='farmers', lazy=True)
+    transactions = db.relationship('transactions', backref='farmers', lazy=True)
     def __repr__(self):
         return f"Farmer Name {self.name}, FarmerID {self.farmer_id}"

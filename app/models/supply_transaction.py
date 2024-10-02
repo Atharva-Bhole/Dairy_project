@@ -9,5 +9,8 @@ class SupplyTransaction(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     total_amount = db.Column(db.Numeric(12, 2), nullable=False)
 
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    
     def __repr__(self):
         return f"Supply Transaction ID: {self.supply_transaction_id}, Farmer ID: {self.farmer_id}, Supply ID: {self.supply_id}"
