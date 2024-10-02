@@ -1,11 +1,14 @@
 from . import db
 from flask import current_app as app 
+# Do not remove these redundant classes they are showing as redundant but used in db.relationship()
 from .muster_data import muster
 from .cow import cows
 from .farmer_bank import farmer_bank_details
 from .muster_data import muster
 from .cow import cows
 from .farmer_bank import farmer_bank_details
+from .transactions import Transaction
+from .supply_transaction import SupplyTransaction
 
 class farmers(db.Model):
     __tablename__ = 'farmers'
@@ -30,7 +33,7 @@ class farmers(db.Model):
     cow = db.relationship('cows', backref='farmers', lazy=True)
     muster = db.relationship('muster', backref='farmers', lazy=True)
     farmer_bank = db.relationship('farmer_bank_details', backref='farmers', lazy=True)
-    supply_transactions = db.relationship('supply_transactions', backref='farmers', lazy=True)
-    transactions = db.relationship('transactions', backref='farmers', lazy=True)
+    supply_transaction = db.relationship('SupplyTransaction', backref='farmers', lazy=True)
+    transactions = db.relationship('Transaction', backref='farmers', lazy=True)
     def __repr__(self):
         return f"Farmer Name {self.name}, FarmerID {self.farmer_id}"

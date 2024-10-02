@@ -1,6 +1,8 @@
 from . import db
 from flask import current_app as app
 from .farmer import farmers
+from .supplies import Supplies
+from .transactions import Transaction
 from .muster_data import muster
 
 class dairy_owner(db.Model):
@@ -16,9 +18,8 @@ class dairy_owner(db.Model):
     deleted_at = db.Column(db.Date)
 
     farmers = db.relationship('farmers', backref='dairy_owner', lazy=True)
-    supply = db.relationship('supplies', backref='dairy_owner', lazy=True)
-    transactions = db.relationship('transactions', backref='dairy_owner', lazy=True)
-
+    supply = db.relationship('Supplies', backref='dairy_owner', lazy=True)
+    transactions = db.relationship('Transaction', backref='dairy_owner', lazy=True)
     # Commented out because unsure to add dairy_id in muster data or not 
     # Also dairy_id is commented out from muster_data model
     

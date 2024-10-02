@@ -1,10 +1,6 @@
 from flask import Flask
 from app.models import db
-from app.controllers import farmer_bp
-from app.controllers import bank
-from app.controllers import dairy
-from app.controllers import muster_
-from app.controllers import supplies
+from app.controllers import farmer_bp, bank, dairy, muster_, supplies, supply_transaction
 from dotenv import load_dotenv
 import os
 
@@ -17,6 +13,7 @@ def create_app():
     app.config['TRACK_MODIFICATIONS'] = os.getenv('TRACK_MODIFICATIONS')
     db.init_app(app)
     app.register_blueprint(muster_)
+    app.register_blueprint(supply_transaction)
     app.register_blueprint(supplies)
     app.register_blueprint(bank)
     app.register_blueprint(dairy)

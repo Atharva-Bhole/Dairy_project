@@ -8,7 +8,7 @@ class SupplyTransaction(db.Model):
     supply_id = db.Column(db.Integer, db.ForeignKey('supplies.supply_id'))
     quantity = db.Column(db.Integer, nullable=False)
     total_amount = db.Column(db.Numeric(12, 2), nullable=False)
-
+    
     def as_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     

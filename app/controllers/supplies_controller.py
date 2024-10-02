@@ -22,7 +22,7 @@ def get_all_supplies():
     return make_response(jsonify({"Supply Details" : supply_dets}), 200)
 
 @supplies.route('/insert_supply_data', methods=['POST'])
-def create_supply_data():
+def insert_supply_data():
     data = request.get_json()
     new_supply = Supplies(**data)
     db.session.add(new_supply)
