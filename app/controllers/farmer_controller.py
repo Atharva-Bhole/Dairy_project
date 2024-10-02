@@ -23,4 +23,4 @@ def create_farmer():
     new_farmer = farmers(**data)
     db.session.add(new_farmer)
     db.session.commit()
-    return (jsonify([new_farmer.as_dict()]),201,"User Inserted Successfully")
+    return (jsonify([new_farmer.as_dict()]),201)
