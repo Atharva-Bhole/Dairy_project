@@ -17,3 +17,9 @@ def putdata():
     db.session.add(new_m_data)
     db.session.commit()
     return jsonify([new_m_data.as_dict()]), 200
+
+@muster_.route('/get_all_muster_data', methods=['GET'])
+def getMusterFullData():
+    muster_data = muster.query.all()
+    muster_list = [dets.as_dict() for dets in muster_data]
+    return make_response(jsonify({"Muster Data": muster_list}), 200)

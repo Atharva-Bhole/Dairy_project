@@ -17,11 +17,3 @@ def view_dairy_data():
     dairy_list = dairy_owner.query.all()
     dairy_data = [dairy.as_dict() for dairy in dairy_list]
     return make_response(jsonify(dairy_data))
-
-@dairy.route('/adddairyowner', methods=['POST'])
-def addowner():
-    data = request.get_json()
-    new_owner = dairy_owner(**data)
-    db.session.add(new_owner)
-    db.session.commit()
-    return jsonify([new_owner.as_dict()])
