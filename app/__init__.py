@@ -11,9 +11,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.config['TRACK_MODIFICATIONS'] = os.getenv('TRACK_MODIFICATIONS')
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
     db.init_app(app)
     app.register_blueprint(muster_)
     app.register_blueprint(supply_transaction)
+    print(app.template_folder)
     app.register_blueprint(supplies)
     app.register_blueprint(bank)
     app.register_blueprint(dairy)

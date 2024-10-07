@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/get_farmer_muster_data", method="POST">
+        {{form.hidden_tag() }}
+        {{ form.farmer_id() }}
+        {{form.submit()}}
+    </form>
+    {% if muster_data %}
+        <h3 class="mt-5">Data of Farmer</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Farmer Id</th>
+                    <th>Milk Union</th>
+                    <th>Muster Id</th>
+                    <th>Payment Period Start</th>
+                    <th>Payment Period End</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Bulk Milk Supplier</th>
+                    <th>Farmer Name</th>
+                    <th>Total Milk</th>
+                    <th>Percent Fat</th>
+                    <th>Percent SNF</th>
+                    <th>Amount</th>
+                    <th>Deduction Amount</th>
+                    <th>Final Amount After Deduction</th>
+                    <th>Average Rate Per Litre</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prop in muster_data %}
+                <tr>
+                    <td>{{ prop.farmer_id }}</td>
+                    <td>{{ prop.milk_union }}</td>
+                    <td>{{ prop.muster_id }}</td>
+                    <td>{{ prop.payment_period_start }}</td>
+                    <td>{{ prop.payment_period_end }}</td>
+                    <td>{{ prop.district }}</td>
+                    <td>{{ prop.taluka }}</td>
+                    <td>{{ prop.village }}</td>
+                    <td>{{ prop.bulk_milk_supplier }}</td>
+                    <td>{{ prop.farmer_name }}</td>
+                    <td>{{ prop.total_milk }}</td>
+                    <td>{{ prop.percent_fat }}</td>
+                    <td>{{ prop.percent_snf }}</td>
+                    <td>{{ prop.amount }}</td>
+                    <td>{{ prop.deduction_amount }}</td>
+                    <td>{{ prop.final_amount_after_deduction }}</td>
+                    <td>{{ prop.avg_rate_per_litre }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+</body>
+</html>

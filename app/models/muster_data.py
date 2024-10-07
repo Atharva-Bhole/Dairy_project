@@ -14,7 +14,7 @@ class muster(db.Model):
     taluka = db.Column(db.String())
     village = db.Column(db.String())
     bulk_milk_supplier = db.Column(db.String())
-    farmer_name = db.Column(db.String())
+    farmer_name = db.Column(db.String(), db.ForeignKey('farmers.name'))
     total_milk = db.Column(db.Numeric(10,2))
     percent_fat = db.Column(db.Numeric(10,2))
     percent_snf = db.Column(db.Numeric(10,2))

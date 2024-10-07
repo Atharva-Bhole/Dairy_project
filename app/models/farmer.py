@@ -31,7 +31,9 @@ class farmers(db.Model):
     
     
     cow = db.relationship('cows', backref='farmers', lazy=True)
-    muster = db.relationship('muster', backref='farmers', lazy=True)
+    # muster = db.relationship('muster', backref='farmers', lazy=True)
+    muster_by_name = db.relationship('muster', backref='farmers_by_name', lazy=True, foreign_keys='muster.farmer_name')
+    muster_by_id = db.relationship('muster', backref='farmers_by_id', lazy=True, foreign_keys='muster.farmer_id')
     farmer_bank = db.relationship('farmer_bank_details', backref='farmers', lazy=True)
     supply_transaction = db.relationship('SupplyTransaction', backref='farmers', lazy=True)
     transactions = db.relationship('Transaction', backref='farmers', lazy=True)

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/farmer_profile", method="POST">
+        {{form.hidden_tag() }}
+        {{ form.farmer_id() }}
+        {{form.submit()}}
+    </form>
+    {% if form_data %}
+        <h3 class="mt-5">Data of Farmer</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>FarmerID</th>
+                    <th>Dairy ID</th>
+                    <th>State</th>
+                    <th>Taluka</th>
+                    <th>District</th>
+                    <th>Village</th>
+                    <th>Wallet Balance</th>
+                    <th>Created At</th>
+                    <th>Upadted At</th>
+                    <th>Deleted At</th>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prop in form_data %}
+                <tr>
+                    <td>{{ prop.farmer_id }}</td>
+                    <td>{{ prop.dairy_id }}</td>
+                    <td>{{ prop.state }}</td>
+                    <td>{{ prop.taluka }}</td>
+                    <td>{{ prop.district }}</td>
+                    <td>{{ prop.village }}</td>
+                    <td>{{ prop.wallet_balance }}</td>
+                    <td>{{ prop.created_at }}</td>
+                    <td>{{ prop.updated_at }}</td>
+                    <td>{{ prop.deleted_at }}</td>
+                    <td>{{ prop.name }}</td>
+                    <td>{{ prop.contact_number }}</td>
+                    <td>{{ prop.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+</body>
+</html>
