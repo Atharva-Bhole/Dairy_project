@@ -17,7 +17,7 @@ class farmer_bank_details(db.Model):
             'bank_name': self.bank_name,
         }
 
-    # def as_dict(self):
-    #     return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
     def __repr__(self):
         return f"farmer Id {self.farmer_id}"
