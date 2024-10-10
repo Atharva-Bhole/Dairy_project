@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response, request, session, render_template
 from app.models import db
 from app.models import farmers, muster
-from app.controllers.forms.farmerform import GetFarmerDetailsForm
+from app.controllers.forms.farmers.farmerform import GetFarmerDetailsForm
 farmer_bp = Blueprint("farmers", __name__)
 
 @farmer_bp.route('/test', methods=["GET"])
