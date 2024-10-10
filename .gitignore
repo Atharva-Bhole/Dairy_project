@@ -3,3 +3,6 @@ __pycache__
 .env
 *.pyc
 __pycache__
+app/__pycache__/__init__.cpython-312.pyc
+app/models/__pycache__/farmer_bank.cpython-312.pyc
+app/.env
